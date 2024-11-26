@@ -16,6 +16,18 @@ class VehiculeRepository extends ServiceEntityRepository
         parent::__construct($registry, Vehicule::class);
     }
 
+    /**
+     * @return Vehicule[] par rapport a la Categorie
+     */
+    public function findAllVehiculeByCategorie(int $value): array
+    {
+        return $this->createQueryBuilder('v')
+            ->andWhere('v.categorie = :value')
+            ->setParameter('value', $value)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Vehicule[] Returns an array of Vehicule objects
 //     */
