@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vehicule index{% endblock %}
+
+{% block body %}
+<h1 class="text-center mb-4">Nos Véhicules</h1>
+
+<div class="row g-4">
+    {% for vehicule in vehicules %}
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                {% if vehicule.image %}
+                    <img src="{{ vehicule.image }}" class="card-img-top" alt="{{ vehicule.marque }} {{ vehicule.modele }}">
+                {% else %}
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Image indisponible">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ vehicule.marque }} {{ vehicule.modele }}</h5>
+                    <p class="card-text">
+                        <strong>Année :</strong> {{ vehicule.annee ? vehicule.annee|date('Y') : 'N/A' }}<br>
+                        <strong>Kilométrage :</strong> {{ vehicule.kilometrage }} km<br>
+                        <strong>Prix :</strong> {{ vehicule.prix }} €<br>
+                        <strong>État :</strong> {{ vehicule.etat ? vehicule.etat.value : 'N/A' }}
+                    </p>
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ path('app_vehicule_show', {'id': vehicule.id}) }}" class="btn btn-primary">Voir</a>
+                        <a href="{{ path('app_vehicule_edit', {'id': vehicule.id}) }}" class="btn btn-success">Modifier</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <p class="text-center">Aucun véhicule trouvé.</p>
+    {% endfor %}
+</div>
+
+
+    <a href="{{ path('app_vehicule_new') }}">Create new</a>
+{% endblock %}
