@@ -8,7 +8,9 @@ use App\Entity\EtatVehicule;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class VehiculeType extends AbstractType
@@ -30,7 +32,11 @@ class VehiculeType extends AbstractType
                 ],
                 'choice_label' => fn($choice) => $choice->value, // Affiche la valeur de l'enum
             ])
-            ->add('image')
+            ->add('image', FileType::class, [
+                'required' => false,
+                'constraints' => [new Image()],
+                'mapped' => false,
+            ])
             ->add('categorie', EntityType::class, [
                 'class' => Categorie::class,
                 'choice_label' => 'nom',

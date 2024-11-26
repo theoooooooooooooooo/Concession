@@ -27,19 +27,40 @@ final class VehiculeController extends AbstractController{
         $vehicule = new Vehicule();
         $form = $this->createForm(VehiculeType::class, $vehicule);
         $form->handleRequest($request);
-
+    
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('image')->getData();
+    
+            if ($file) {
+                // Générer un nom unique pour l'image avec l'extension originale
+                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = preg_replace('/[^a-zA-Z0-9_-]/', '_', $originalFilename); // Nettoyer le nom
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
+    
+                // Déplacer le fichier dans le répertoire configuré
+                $uploadDir = $this->getParameter('kernel.project_dir') . '/public/vehicules/images/';
+                if (!is_dir($uploadDir)) {
+                    mkdir($uploadDir, 0755, true); // Créer le dossier si inexistant
+                }
+    
+                $file->move($uploadDir, $newFilename);
+    
+                // Sauvegarder le nom de fichier dans l'entité
+                $vehicule->setImage($newFilename);
+            }
+    
             $entityManager->persist($vehicule);
             $entityManager->flush();
-
+    
             return $this->redirectToRoute('app_vehicule_index', [], Response::HTTP_SEE_OTHER);
         }
-
+    
         return $this->render('vehicule/new.html.twig', [
             'vehicule' => $vehicule,
             'form' => $form,
         ]);
     }
+    
 
     #[Route('/{id}', name: 'app_vehicule_show', methods: ['GET'])]
     public function show(Vehicule $vehicule): Response
@@ -54,18 +75,44 @@ final class VehiculeController extends AbstractController{
     {
         $form = $this->createForm(VehiculeType::class, $vehicule);
         $form->handleRequest($request);
-
+    
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('image')->getData();
+    
+            // Si une nouvelle image est uploadée
+            if ($file) {
+                // Génère un nom unique pour le fichier
+                $filename = uniqid() . '.' . $file->guessExtension();
+    
+                // Déplace la nouvelle image
+                $file->move(
+                    $this->getParameter('kernel.project_dir') . '/public/vehicules/images',
+                    $filename
+                );
+    
+                // Supprime l'ancienne image si elle existe
+                if ($vehicule->getImage()) {
+                    $oldImagePath = $this->getParameter('kernel.project_dir') . '/public/vehicules/images/' . $vehicule->getImage();
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
+                }
+    
+                // Met à jour l'image dans l'entité
+                $vehicule->setImage($filename);
+            }
+    
             $entityManager->flush();
-
+    
             return $this->redirectToRoute('app_vehicule_index', [], Response::HTTP_SEE_OTHER);
         }
-
+    
         return $this->render('vehicule/edit.html.twig', [
             'vehicule' => $vehicule,
             'form' => $form,
         ]);
     }
+    
 
     #[Route('/{id}', name: 'app_vehicule_delete', methods: ['POST'])]
     public function delete(Request $request, Vehicule $vehicule, EntityManagerInterface $entityManager): Response

@@ -1,0 +1,53 @@
+Vehicule :
+- id
+- marque (string)
+- modele (string)
+- annee (years)
+- kilometrage (integer)
+- prix (float, 10.2)
+- etat (enum: Neuve, Occasion)
+- image(optionnel)
+- categorie (ManyToOne avec Categorie)
+
+Categorie :
+- id
+- nom (string)
+
+Client :
+id
+nom (string)
+prenom (string)
+adrNumRue (integer)
+adrRue (string)
+adrCP (integer)
+email (string)
+telephone (integer)
+
+Vente :
+id
+dateVente (DateTimeImmutable)
+montantTotal (integer)
+modePaiement (enum: Espece, Cheque, Carte BancaireZ)
+vehicule (OneToOne avec Vehicule)
+client (ManyToOne avec Client)
+
+Service :
+id
+description (text)
+dateDemande (DateTimeImmutable)
+statut (enum: reçu, en cours, terminé)
+clients (ManyToOne Client)
+mecaniciens (ManyToMany Mecanicien)
+
+Mecanicien :
+id
+nom (string)
+prenom (string)
+specialiste (enum: carrosserie, moteur, freins)
+
+Piece :
+id
+nom (string)
+prix (float, 10.2)
+quantiteStock (integer)
+services (ManyToMany Service)
