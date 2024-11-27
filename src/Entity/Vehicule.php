@@ -108,7 +108,7 @@ class Vehicule
         return $this->etat;
     }
 
-    public function setEtat(EtatVehicule $etat): static
+    public function setEtat(EtatVehicule $etat): self
     {
         $this->etat = $etat;
 
