@@ -60,15 +60,6 @@ final class VehiculeController extends AbstractController{
             'form' => $form,
         ]);
     }
-    
-
-    #[Route('/{id}', name: 'app_vehicule_show', methods: ['GET'])]
-    public function show(Vehicule $vehicule): Response
-    {
-        return $this->render('vehicule/show.html.twig', [
-            'vehicule' => $vehicule,
-        ]);
-    }
 
     #[Route('/{id}/edit', name: 'app_vehicule_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Vehicule $vehicule, EntityManagerInterface $entityManager): Response
