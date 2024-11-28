@@ -4,7 +4,9 @@
 
 {% block body %}
     <h1>Service index</h1>
-
+    <a href="{{ path('app_service_new') }}" class="custom-btn">Nouveau</a>
+    <br>
+    <br>
     <table class="table">
         <thead>
             <tr>
@@ -23,8 +25,8 @@
                 <td>{{ service.statut ? service.statut.value : 'N/A'  }}</td>
                 <td>{{ service.client.nom }} {{ service.client.prenom }}</td>
                 <td>
-                    <a href="{{ path('app_service_show', {'id': service.id}) }}">show</a>
-                    <a href="{{ path('app_service_edit', {'id': service.id}) }}">edit</a>
+                    <a href="{{ path('app_service_show', {'id': service.id}) }}" class="custom-btn">show</a>
+                    <a href="{{ path('app_service_edit', {'id': service.id}) }}" class="custom-btn">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +37,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_service_new') }}">Create new</a>
+    
 {% endblock %}

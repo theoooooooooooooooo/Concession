@@ -4,13 +4,17 @@
 
 {% block body %}
     <h1>Vente Automobile</h1>
-
+    <a href="{{ path('app_vente_new') }}" class="custom-btn">Nouveau</a>
+    <br>
+    <br>
     <table class="table">
         <thead>
             <tr>
                 <th>Date Vente</th>
                 <th>Montant Total</th>
                 <th>Mode Paiement</th>
+                <th>Client</th>
+                <th>Véhicule</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -23,8 +27,7 @@
                 <td>{{ vente.clients.nom }} {{ vente.clients.prenom }}</td>
                 <td>{{ vente.vehicule.marque }} {{ vente.vehicule.modele }}</td>
                 <td>
-                    <a href="{{ path('app_vente_show', {'id': vente.id}) }}">show</a>
-                    <a href="{{ path('app_vente_edit', {'id': vente.id}) }}">edit</a>
+                    <a href="{{ path('app_vente_show', {'id': vente.id}) }}" class="custom-btn">show</a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +38,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_vente_new') }}">Create new</a>
+
 {% endblock %}

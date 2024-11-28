@@ -4,7 +4,9 @@
 
 {% block body %}
     <h1>Clients</h1>
-
+    <a href="{{ path('app_client_new') }}" class="custom-btn">Nouveau</a>
+    <br>
+    <br>
     <table class="table">
         <thead>
             <tr>
@@ -29,8 +31,7 @@
                 <td>{{ client.email }}</td>
                 <td>{{ client.telephone }}</td>
                 <td>
-                    <a href="{{ path('app_client_show', {'id': client.id}) }}">show</a>
-                    <a href="{{ path('app_client_edit', {'id': client.id}) }}">edit</a>
+                    <a href="{{ path('app_client_edit', {'id': client.id}) }}" class="custom-btn">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -41,5 +42,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_client_new') }}">Create new</a>
+    
 {% endblock %}

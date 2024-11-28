@@ -10,6 +10,34 @@
 
         <!-- Custom CSS -->
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/form.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/table.css') }}" rel="stylesheet">
+        <style>
+            /* Style du bouton personnalisé */
+            .custom-btn {
+                display: inline-block;
+                background-color: #343a40; /* Couleur de fond sombre */
+                color: white; /* Texte en blanc */
+                padding: 0.6rem 1.2rem;
+                text-align: center;
+                font-size: 1rem;
+                border-radius: 4px;
+                text-decoration: none; /* Enlever le soulignement */
+                transition: background-color 0.3s, transform 0.3s;
+            }
+
+            /* Effet au survol */
+            .custom-btn:hover {
+                background-color: #ffc107; /* Changement de couleur au survol */
+                transform: translateY(-2px); /* Légère élévation au survol */
+            }
+
+            /* Optionnel : Effet focus pour l'accessibilité */
+            .custom-btn:focus {
+                outline: none;
+                box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6); /* Ombre blanche au focus */
+            }
+        </style>
 
         {% block stylesheets %}
         {% endblock %}

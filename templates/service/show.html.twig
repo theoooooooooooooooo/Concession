@@ -1,34 +1,144 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Service{% endblock %}
+{% block title %}Service: {{ service.description }}{% endblock %}
+
+{% block stylesheets %}
+<style>
+/* Conteneur principal pour centrer le contenu */
+.service-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    background-color: #f8f9fa; /* Fond léger */
+}
+
+/* Carte principale du service */
+.service-card {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+    text-align: left;
+}
+
+/* Titre du service */
+.service-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #343a40;
+}
+
+/* Section des détails */
+.service-detail {
+    margin-bottom: 1.5rem;
+}
+
+.service-detail h5 {
+    font-size: 1.2rem;
+    color: #495057;
+    margin-bottom: 0.5rem;
+}
+
+.service-detail p {
+    font-size: 1rem;
+    color: #212529;
+    margin: 0;
+}
+
+/* Actions (boutons) */
+.service-actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* Boutons */
+.btn {
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Bouton Retour */
+.btn-back {
+    background-color: #343a40;
+    color: #ffffff;
+}
+.btn-back:hover {
+    background-color: #495057;
+}
+
+/* Bouton Modifier */
+.btn-edit {
+    background-color: #ffc107;
+    color: #212529;
+}
+.btn-edit:hover {
+    background-color: #d39e00;
+}
+</style>
+{% endblock %}
 
 {% block body %}
-    <h1>Service</h1>
+<div class="service-container">
+    <div class="service-card">
+        <h1 class="service-title">Détails du service</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ service.id }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ service.description }}</td>
-            </tr>
-            <tr>
-                <th>DateDemande</th>
-                <td>{{ service.dateDemande ? service.dateDemande|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Statut</th>
-                <td>{{ service.statut }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="service-detail">
+            <h5>ID du service</h5>
+            <p>{{ service.id }}</p>
+        </div>
 
-    <a href="{{ path('app_service_index') }}">back to list</a>
+        <div class="service-detail">
+            <h5>Description</h5>
+            <p>{{ service.description }}</p>
+        </div>
 
-    <a href="{{ path('app_service_edit', {'id': service.id}) }}">edit</a>
+        <div class="service-detail">
+            <h5>Date de demande</h5>
+            <p>{{ service.dateDemande ? service.dateDemande|date('Y-m-d H:i:s') : 'Non spécifiée' }}</p>
+        </div>
 
-    {{ include('service/_delete_form.html.twig') }}
+        <div class="service-detail">
+            <h5>Statut</h5>
+            <p>{{ service.statut ? service.statut.value : 'Non spécifié' }}</p>
+        </div>
+
+        <div class="service-detail">
+            <h5>Client</h5>
+            <p>{{ service.client.nom }} {{ service.client.prenom }}</p>
+        </div>
+
+        {# <div class="service-detail">
+            <h5>Véhicule</h5>
+            <p>{{ service.vehicule.marque }} {{ service.vehicule.modele }} ({{ service.vehicule.prix }} €)</p>
+        </div> #}
+
+        <div class="service-detail">
+            <h5>Pièces</h5>
+            {% if service.pieces|length > 0 %}
+                <ul>
+                    {% for piece in service.pieces %}
+                        <li>{{ piece.nom }} ({{ piece.prix }} €, Stock: {{ piece.quantiteStock }})</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Aucune pièce associée</p>
+            {% endif %}
+        </div>
+
+        <div class="service-actions">
+            <a href="{{ path('app_service_index') }}" class="btn btn-back">Retour à la liste</a>
+            <a href="{{ path('app_service_edit', {'id': service.id}) }}" class="btn btn-edit">Modifier</a>
+            {{ include('service/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
 {% endblock %}

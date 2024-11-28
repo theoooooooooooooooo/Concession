@@ -4,7 +4,9 @@
 
 {% block body %}
 <h1 class="text-center mb-4">Nos Véhicules</h1>
-
+<a href="{{ path('app_vehicule_new') }}" class="custom-btn">Nouveau</a>
+<br>
+<br>
 <div class="row g-4">
     {% for vehicule in vehicules %}
         <div class="col-md-4">
@@ -23,7 +25,7 @@
                         <strong>État :</strong> {{ vehicule.etat ? vehicule.etat.value : 'N/A' }}
                     </p>
                     <div class="d-flex justify-content-between">
-                        <a href="{{ path('app_vehicule_edit', {'id': vehicule.id}) }}" class="btn btn-success">Modifier</a>
+                        <a href="{{ path('app_vehicule_edit', {'id': vehicule.id}) }}" class="custom-btn">Modifier</a>
                     </div>
                 </div>
             </div>
@@ -34,5 +36,5 @@
 </div>
 
 
-    <a href="{{ path('app_vehicule_new') }}">Create new</a>
+
 {% endblock %}

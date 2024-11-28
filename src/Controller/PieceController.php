@@ -41,14 +41,6 @@ final class PieceController extends AbstractController{
         ]);
     }
 
-    #[Route('/{id}', name: 'app_piece_show', methods: ['GET'])]
-    public function show(Piece $piece): Response
-    {
-        return $this->render('piece/show.html.twig', [
-            'piece' => $piece,
-        ]);
-    }
-
     #[Route('/{id}/edit', name: 'app_piece_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Piece $piece, EntityManagerInterface $entityManager): Response
     {

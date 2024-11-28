@@ -4,11 +4,12 @@
 
 {% block body %}
     <h1>Piece index</h1>
-
+    <a href="{{ path('app_piece_new') }}" class="custom-btn">Nouveau</a>
+    <br>
+    <br>
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
                 <th>Prix</th>
                 <th>QuantiteStock</th>
@@ -18,13 +19,11 @@
         <tbody>
         {% for piece in pieces %}
             <tr>
-                <td>{{ piece.id }}</td>
                 <td>{{ piece.nom }}</td>
                 <td>{{ piece.prix }}</td>
                 <td>{{ piece.quantiteStock }}</td>
                 <td>
-                    <a href="{{ path('app_piece_show', {'id': piece.id}) }}">show</a>
-                    <a href="{{ path('app_piece_edit', {'id': piece.id}) }}">edit</a>
+                    <a href="{{ path('app_piece_edit', {'id': piece.id}) }}" class="custom-btn">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +34,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_piece_new') }}">Create new</a>
+    
 {% endblock %}

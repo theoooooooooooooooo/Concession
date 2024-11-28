@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Categorie index{% endblock %}
+{% block title %}Categorie{% endblock %}
 
 {% block body %}
-    <h1>Categorie index</h1>
-
+    <h1>Categorie</h1>
+    <a href="{{ path('app_categorie_new') }}" class="custom-btn">Nouveau</a>
+    <br>
+    <br>
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
                 <th>actions</th>
             </tr>
@@ -16,11 +17,9 @@
         <tbody>
         {% for categorie in categories %}
             <tr>
-                <td>{{ categorie.id }}</td>
                 <td>{{ categorie.nom }}</td>
                 <td>
-                    <a href="{{ path('app_categorie_show', {'id': categorie.id}) }}">show</a>
-                    <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}">edit</a>
+                    <a href="{{ path('app_categorie_show', {'id': categorie.id}) }}" class="custom-btn">show</a>
                 </td>
             </tr>
         {% else %}
@@ -30,6 +29,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_categorie_new') }}">Create new</a>
 {% endblock %}

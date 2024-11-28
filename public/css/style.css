@@ -51,7 +51,7 @@ body {
 }
 
 /* Buttons */
-/* .btn-primary {
+.btn-primary {
     background-color: #007bff;
     border: none;
 }
@@ -67,43 +67,4 @@ body {
 
 .btn-success:hover {
     background-color: #1e7e34;
-} */
-
-/* Form container */
-.form-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Button style */
-.custom-btn {
-    background-color: black;
-    color: white;
-    border: 1px solid black;
-    transition: all 0.3s ease;
-}
-
-/* Button hover effect (color matches menu) */
-.custom-btn:hover {
-    background-color: #e94560; /* Change this to match your menu color */
-    border-color: #e94560;
-    color: white;
-}
-
-/* Form title styling */
-h1 {
-    color: #333;
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-}
-
-/* General form styling */
-.form-control {
-    margin-bottom: 15px;
-    border-radius: 5px;
 }
