@@ -8,20 +8,20 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Description</th>
                 <th>DateDemande</th>
                 <th>Statut</th>
+                <th>Client</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for service in services %}
             <tr>
-                <td>{{ service.id }}</td>
                 <td>{{ service.description }}</td>
                 <td>{{ service.dateDemande ? service.dateDemande|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ service.statut }}</td>
+                <td>{{ service.statut ? service.statut.value : 'N/A'  }}</td>
+                <td>{{ service.client.nom }} {{ service.client.prenom }}</td>
                 <td>
                     <a href="{{ path('app_service_show', {'id': service.id}) }}">show</a>
                     <a href="{{ path('app_service_edit', {'id': service.id}) }}">edit</a>

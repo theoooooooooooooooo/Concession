@@ -20,6 +20,8 @@
                 <td>{{ vente.dateVente ? vente.dateVente|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ vente.montantTotal }}</td>
                 <td>{{ vente.modePaiement ? vente.modePaiement.value : 'N/A' }}</td>
+                <td>{{ vente.clients.nom }} {{ vente.clients.prenom }}</td>
+                <td>{{ vente.vehicule.marque }} {{ vente.vehicule.modele }}</td>
                 <td>
                     <a href="{{ path('app_vente_show', {'id': vente.id}) }}">show</a>
                     <a href="{{ path('app_vente_edit', {'id': vente.id}) }}">edit</a>

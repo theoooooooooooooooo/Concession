@@ -1,5 +1,20 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="text-center">Vente</h1>
+        <div class="form-container">
+            {{ form_start(form, {'attr': {'class': 'form-group'}}) }}
+                {{ form_row(form.clients, {'attr': {'class': 'form-control'}}) }}
+                {{ form_row(form.vehicule, {'attr': {'class': 'form-control'}}) }}
+                {{ form_row(form.dateVente, {'attr': {'class': 'form-control'}}) }}
+                {{ form_row(form.montantTotal, {'attr': {'class': 'form-control'}}) }}
+                {{ form_row(form.modePaiement, {'attr': {'class': 'form-control'}}) }}
+                
+                
 
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn custom-btn">Envoyer</button>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

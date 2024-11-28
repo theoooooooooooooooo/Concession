@@ -16,7 +16,7 @@ class MecanicienType extends AbstractType
         $builder
             ->add('nom')
             ->add('prenom')
-            ->add('speciamiste', ChoiceType::class, [
+            ->add('specialiste', ChoiceType::class, [
                 'choices' => [
                     'Carrosserie' => Specialiste::C,
                     'Frein' => Specialiste::F,

@@ -1,4 +1,19 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{% block body %}
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Formulaire Véhicule</h2>
+        <div class="form-container">
+            {{ form_start(form, {'attr': {'class': 'form-group'}}) }}
+                {% for row in form %}
+                    <div class="mb-3">
+                        {{ form_label(row, null, {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(row, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(row) }}
+                    </div>
+                {% endfor %}
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn custom-btn">Envoyer</button>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

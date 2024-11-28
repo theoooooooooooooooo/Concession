@@ -21,7 +21,6 @@
                 <td>{{ mecanicien.prenom }}</td>
                 <td>{{ mecanicien.specialiste ? mecanicien.specialiste.value : 'N/A'}}</td>
                 <td>
-                    <a href="{{ path('app_mecanicien_show', {'id': mecanicien.id}) }}">show</a>
                     <a href="{{ path('app_mecanicien_edit', {'id': mecanicien.id}) }}">edit</a>
                 </td>
             </tr>
