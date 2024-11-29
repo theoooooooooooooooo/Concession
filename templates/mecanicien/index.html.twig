@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mecanicien index{% endblock %}
+{% block title %}Mecaniciens{% endblock %}
 
 {% block body %}
-    <h1>Mecanicien index</h1>
+    <h1>Mecaniciens</h1>
     <a href="{{ path('app_mecanicien_new') }}" class="custom-btn">Nouveau</a>
     <br>
     <br>
@@ -23,12 +23,12 @@
                 <td>{{ mecanicien.prenom }}</td>
                 <td>{{ mecanicien.specialiste ? mecanicien.specialiste.value : 'N/A'}}</td>
                 <td>
-                    <a href="{{ path('app_mecanicien_edit', {'id': mecanicien.id}) }}" class="custom-btn">edit</a>
+                    <a href="{{ path('app_mecanicien_edit', {'id': mecanicien.id}) }}" class="custom-btn">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucune donnée</td>
             </tr>
         {% endfor %}
         </tbody>

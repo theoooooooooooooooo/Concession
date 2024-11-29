@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Piece index{% endblock %}
+{% block title %}Pièces{% endblock %}
 
 {% block body %}
-    <h1>Piece index</h1>
+    <h1>Pièces</h1>
     <a href="{{ path('app_piece_new') }}" class="custom-btn">Nouveau</a>
     <br>
     <br>
@@ -23,12 +23,12 @@
                 <td>{{ piece.prix }}</td>
                 <td>{{ piece.quantiteStock }}</td>
                 <td>
-                    <a href="{{ path('app_piece_edit', {'id': piece.id}) }}" class="custom-btn">edit</a>
+                    <a href="{{ path('app_piece_edit', {'id': piece.id}) }}" class="custom-btn">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucune donnée</td>
             </tr>
         {% endfor %}
         </tbody>

@@ -31,12 +31,12 @@
                 <td>{{ client.email }}</td>
                 <td>{{ client.telephone }}</td>
                 <td>
-                    <a href="{{ path('app_client_edit', {'id': client.id}) }}" class="custom-btn">edit</a>
+                    <a href="{{ path('app_client_edit', {'id': client.id}) }}" class="custom-btn">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="9">no records found</td>
+                <td colspan="9">Aucune donnée</td>
             </tr>
         {% endfor %}
         </tbody>

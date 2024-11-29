@@ -1,13 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Piece{% endblock %}
+{% block title %}Modife Pièce{% endblock %}
 
 {% block body %}
-    <h1>Edit Piece</h1>
-
-    {{ include('piece/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_piece_index') }}" class="custom-btn">back to list</a>
-
-    {{ include('piece/_delete_form.html.twig') }}
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Modife Pièce</h2>
+        <div class="form-container">
+            {{ include('piece/_form.html.twig') }}
+                <a href="{{ path('app_piece_index') }}" class="custom-btn">Retour</a>
+                {{ include('piece/_delete_form.html.twig') }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}

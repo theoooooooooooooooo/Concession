@@ -1,7 +1,4 @@
 {% block body %}
-    <div class="container mt-5">
-        <h2 class="text-center mb-4">Formulaire Service</h2>
-        <div class="form-container">
             {{ form_start(form, {'attr': {'class': 'form-group'}}) }}
                 {% for row in form %}
                     <div class="mb-3">
@@ -12,8 +9,4 @@
                 {% endfor %}
                 <div class="text-center mt-4">
                     <button type="submit" class="btn custom-btn">Envoyer</button>
-                </div>
-            {{ form_end(form) }}
-        </div>
-    </div>
 {% endblock %}

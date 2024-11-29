@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Vente{% endblock %}
+{% block title %}Nouvelle vente{% endblock %}
 
 {% block body %}
-    <h1>Create new Vente</h1>
-
-    {{ include('vente/_form.html.twig') }}
-
-    <a href="{{ path('app_vente_index') }}" class="btn btn-back">back to list</a>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Nouvelle Vente</h2>
+        <div class="form-container">
+            {{ include('vente/_form.html.twig') }}
+                <a href="{{ path('app_vente_index') }}" class="custom-btn">Retour</a>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}
