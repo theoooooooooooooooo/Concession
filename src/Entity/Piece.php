@@ -99,4 +99,13 @@ class Piece
 
         return $this;
     }
+    
+    public function reduceStock(int $quantity): void
+    {
+        if ($quantity > $this->quantiteStock) {
+            throw new \Exception("La quantité demandée dépasse le stock disponible.");
+        }
+
+        $this->quantiteStock -= $quantity;
+    }
 }

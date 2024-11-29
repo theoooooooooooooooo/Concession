@@ -29,6 +29,16 @@ final class ServiceController extends AbstractController{
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Gérer la réduction du stock pour les pièces utilisées
+            foreach ($service->getPieces() as $piece) {
+                try {
+                    $piece->reduceStock(1); // Par défaut, on retire 1 pièce
+                } catch (\Exception $e) {
+                    $this->addFlash('error', "Erreur : " . $e->getMessage());
+                    return $this->redirectToRoute('app_service_new');
+                }
+            }
+
             $entityManager->persist($service);
             $entityManager->flush();
 
@@ -37,7 +47,7 @@ final class ServiceController extends AbstractController{
 
         return $this->render('service/new.html.twig', [
             'service' => $service,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
