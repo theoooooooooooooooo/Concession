@@ -3,6 +3,27 @@
 {% block title %}Service Après Vente{% endblock %}
 
 {% block body %}
+<style>
+    .tag {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.85rem;
+        font-weight: bold;
+        border-radius: 4px;
+        text-align: center;
+        color: white;
+    }
+    .tag-end {
+        background-color: #28a745; /* Vert pour Nouveau */
+    }
+    .tag-enCours {
+        background-color: #ffc107; /* Jaune pour Occasion */
+        color: black;
+    }
+    .tag-recu {
+        background-color: #35cfdc; /* Rouge pour Vendu */
+    }
+</style>
     <h1>Service Après Vente</h1>
     <a href="{{ path('app_service_new') }}" class="custom-btn">Nouveau</a>
     <br>
@@ -22,7 +43,15 @@
             <tr>
                 <td>{{ service.description }}</td>
                 <td>{{ service.dateDemande ? service.dateDemande|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ service.statut ? service.statut.value : 'N/A'  }}</td>
+                {# <td>{{ service.statut ? service.statut.value : 'N/A'  }}</td> #}
+                <td><span class="tag 
+                        {% if service.statut and service.statut.value == 'Reçu' %}tag-recu{% endif %}
+                    {% if service.statut and service.statut.value == 'En cours' %}tag-enCours{% endif %}
+                    {% if service.statut and service.statut.value == 'Terminer' %}tag-end{% endif %}
+                    ">
+                    {{ service.statut ? service.statut.value : 'N/A' }}
+                    </span>
+                </td>
                 <td>{{ service.client.nom }} {{ service.client.prenom }}</td>
                 <td>
                     <a href="{{ path('app_service_show', {'id': service.id}) }}" class="custom-btn">Aperçue</a>
